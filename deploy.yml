@@ -1,0 +1,27 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+   name: demodeploy
+spec:
+   replicas: 2
+   template:
+     metadata:
+       name: testpods
+       labels:
+         name: qadeploy
+     spec:
+      containers:
+        - name: myimage
+          image: raviranjan5937/hello_world:${env.BUILD_ID}"
+          ports:
+          - containerPort: 8080
+          volumeMounts:
+          - name: testconfigmap
+            mountPath: "/tmp/config"
+      volumes:
+        - name: testconfigmap
+          configMap:
+            name: mymap
+            items:
+            - key: sample.conf
+              path: sample.conf
