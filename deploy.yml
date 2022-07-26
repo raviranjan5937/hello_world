@@ -12,16 +12,6 @@ spec:
      spec:
       containers:
         - name: myimage
-          image: raviranjan5937/hello_world:${env.BUILD_ID}"
+          image: raviranjan5937/hello_world:latest
           ports:
           - containerPort: 8080
-          volumeMounts:
-          - name: testconfigmap
-            mountPath: "/tmp/config"
-      volumes:
-        - name: testconfigmap
-          configMap:
-            name: mymap
-            items:
-            - key: sample.conf
-              path: sample.conf
