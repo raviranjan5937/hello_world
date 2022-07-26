@@ -25,9 +25,8 @@
 			     /* URL of Dockerhub and Unique ID given/generated while adding Credentials of Dockerhub in Jenkins */
 		      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
 			     /* Build Docker Image locally; For more info: https://jenkins.io/doc/book/pipeline/docker/ */
-				 myImage = docker.build("raviranjan5937/hello_world:${env.BUILD_ID}")
+				 myImage = docker.build("raviranjan5937/hello_world:latest")
 				 /* Push the container to the Registry */
-			         sh "docker tag raviranjan5937/hello_world:latest raviranjan5937/hello_world:${env.BUILD_ID}"
 				 myImage.push()
 				   }
 				}
