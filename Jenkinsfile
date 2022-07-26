@@ -27,6 +27,7 @@
 			     /* Build Docker Image locally; For more info: https://jenkins.io/doc/book/pipeline/docker/ */
 				 myImage = docker.build("raviranjan5937/hello_world:${env.BUILD_ID}")
 				 /* Push the container to the Registry */
+			         sh "docker tag raviranjan5937/hello_world:latest raviranjan5937/hello_world:${env.BUILD_ID}"
 				 myImage.push()
 				   }
 				}
